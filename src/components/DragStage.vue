@@ -14,6 +14,7 @@
         />
         <button
             v-if="current"
+            class="add-pod-button"
             @click="addPod"
         >
             Add Pod
@@ -75,5 +76,10 @@ const pathString = computed(() => positions.map((item, index) => `${index === 0 
     fill: transparent;
     stroke: #000000;
     stroke-width: 1px;
+}
+.drag-stage .add-pod-button{
+    position: fixed;
+    top: 0;
+    right: 120px;
 }
 </style>

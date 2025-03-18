@@ -22,6 +22,12 @@
       </button>
       <button @click="addLine">Add Line</button>
     </div>
+    <div
+      @click="(e) => console.log(e.target.innerHTML)"
+      class="line-output"
+    >
+      {{ lines }}
+    </div>
     <input
       type="text"
       v-model="bgImage"
@@ -31,7 +37,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import DragStage from "./components/DragStage.vue";
 const lines = ref([]);
 const currentLine = ref(-1);
@@ -43,6 +49,7 @@ const addLine = () => {
 const lineUpdate = ({ index, positions }) => {
   lines.value[index] = positions;
 }
+// const serializedLines = computed(() => JSON.stringify(lines.value));
 </script>
 
 <style scoped>
@@ -62,5 +69,14 @@ const lineUpdate = ({ index, positions }) => {
     border: 1px solid #cccccc;
     pointer-events: none;
     opacity: .5;
+}
+.line-output{
+  position: fixed;
+  top: 510px;
+  left: 0;
+  width: 500px;
+  height: 200px;
+  overflow: hidden;
+  border: 1px solid #cccccc;
 }
 </style>
